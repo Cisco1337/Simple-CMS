@@ -1,17 +1,3 @@
-<?php
-include 'inc/Article.class.php';
-
-if (!isset($_GET['id'])){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
-}
-
-
-$article = $core->getArticle($_GET['id']);
-if (!$article){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
-}
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +5,7 @@ if (!$article){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><?php echo SITE_NAME; ?> | Article</title>
+        <title><?php echo SITE_NAME; ?> | Administration Login</title>
 
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
@@ -45,22 +31,32 @@ if (!$article){
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="?p=home">Home</a></li>
-                        <li class="active"><a href="?p=viewarticles">Articles</a></li>
+                        <li><a href="?p=viewarticles">Articles</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li class="pull-right"><a class="apanel" href="?p=admin">Administration</a></li>
+                        <li class="active pull-right"><a class="apanel" href="?p=admin">Administration</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
 
         <div class="container">
-            <div class="col-md-12 card">
-                <h1><?php echo $article->title; ?></h1>
-                <hr id="hr">
-                <p class="lead"><?php echo $article->text; ?></p>
-                <h3 class="pull-right"><?php echo date("d/m/Y H:i:s", $article->date); ?></h3>
-                <h3 class="pull-left">Author: <?php echo $core->getUserByID($article->author_id)->username; ?></h3>
+            <div class="col-md-2 card shold">
+                <div class="sidebar-wrapper">
+                    <div class="sidebar">
+                        <li><a href="?p=admin&v=users">Users</a></li>
+                        <li><a href="?p=admin&v=articles">Articles</a></li>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 card" style="text-align: center;">
+                <div class="col-md-12">
+                    <h1>Admin Home</h1>
+                </div>
+                <div class="col-md-8">
+                    <b>Administration home</b>
+                </div>
             </div>
         </div><!-- /.container -->
 

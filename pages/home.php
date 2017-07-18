@@ -1,17 +1,3 @@
-<?php
-include 'inc/Article.class.php';
-
-if (!isset($_GET['id'])){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
-}
-
-
-$article = $core->getArticle($_GET['id']);
-if (!$article){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
-}
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +5,7 @@ if (!$article){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><?php echo SITE_NAME; ?> | Article</title>
+        <title><?php echo SITE_NAME; ?> | Home</title>
 
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
@@ -44,8 +30,8 @@ if (!$article){
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="?p=home">Home</a></li>
-                        <li class="active"><a href="?p=viewarticles">Articles</a></li>
+                        <li class="active"><a href="?p=home">Home</a></li>
+                        <li><a href="?p=viewarticles">Articles</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <li class="pull-right"><a class="apanel" href="?p=admin">Administration</a></li>
@@ -56,11 +42,8 @@ if (!$article){
 
         <div class="container">
             <div class="col-md-12 card">
-                <h1><?php echo $article->title; ?></h1>
-                <hr id="hr">
-                <p class="lead"><?php echo $article->text; ?></p>
-                <h3 class="pull-right"><?php echo date("d/m/Y H:i:s", $article->date); ?></h3>
-                <h3 class="pull-left">Author: <?php echo $core->getUserByID($article->author_id)->username; ?></h3>
+                <h1>Simple CMS</h1>
+                <p class="lead">Simple PHP CMS built with <i class="glyphicon glyphicon-heart love"></i></p>
             </div>
         </div><!-- /.container -->
 

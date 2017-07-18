@@ -1,14 +1,17 @@
 <?php
-include 'inc/Article.class.php';
-
-if (!isset($_GET['id'])){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
+if ($core->loggedin()){
+    header("Location: ?p=admin");
 }
 
+if (isset($_POST['login'])){
+    if (isset($_POST['username']) && isset($_POST['password'])){
+        $username = $_POST['username'];
+        $password = md5($username . $_POST['password'] . $username);
 
-$article = $core->getArticle($_GET['id']);
-if (!$article){
-    header("Location: " . $_SERVER['PHP_SELF'] . "?p=viewarticles");
+        if ($core->login($username, $password)){
+            header("Location: " . $_SERVER['PHP_SELF'] . "?p=admin");
+        }
+    }
 }
 ?>
 
@@ -19,7 +22,7 @@ if (!$article){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><?php echo SITE_NAME; ?> | Article</title>
+        <title><?php echo SITE_NAME; ?> | Administration Login</title>
 
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
@@ -45,7 +48,7 @@ if (!$article){
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="?p=home">Home</a></li>
-                        <li class="active"><a href="?p=viewarticles">Articles</a></li>
+                        <li><a href="?p=viewarticles">Articles</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <li class="pull-right"><a class="apanel" href="?p=admin">Administration</a></li>
@@ -56,11 +59,24 @@ if (!$article){
 
         <div class="container">
             <div class="col-md-12 card">
-                <h1><?php echo $article->title; ?></h1>
-                <hr id="hr">
-                <p class="lead"><?php echo $article->text; ?></p>
-                <h3 class="pull-right"><?php echo date("d/m/Y H:i:s", $article->date); ?></h3>
-                <h3 class="pull-left">Author: <?php echo $core->getUserByID($article->author_id)->username; ?></h3>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h1 style="text-align: center;">Admin Login</h1>
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username: </label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password: </label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success form-control" name="login" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
             </div>
         </div><!-- /.container -->
 

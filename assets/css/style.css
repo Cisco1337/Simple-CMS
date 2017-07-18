@@ -1,0 +1,110 @@
+body {
+    padding-top: 70px;
+    background: #D3959B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #BFE6BA, #D3959B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #BFE6BA, #D3959B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body>.container>*{
+    background-color: #f9e3a7;
+    opacity: .8;
+}
+
+.navbar{
+    background-color: #edcf7d;
+    border-bottom: 1px solid #edc353;
+    opacity: .9;
+}
+
+.navbar > .container .navbar-brand, .navbar-inverse .navbar-nav > li > a{
+    color: gray;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: 700;
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+    background-color: #e5c56e !important;
+    color: white !important;
+}
+
+.love{
+    color: red;
+    text-shadow: -1px 0 #333, 0 1px #333, 1px 0 #333, 0 -1px #333;
+}
+
+.card{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.navbar-inverse .navbar-nav > li > a.apanel{
+    color: red !important;
+}
+
+.navbar-inverse .navbar-nav > li > a.apanel:hover{
+    color: #cc0000 !important;
+}
+
+.title,.preview,.info{
+    border-bottom: 1px solid #edc353;
+}
+
+.preview{
+    margin-bottom: 10px;
+}
+
+.rmore{
+    margin: 10px;
+}
+#hr{
+    border-top: 1px solid #edc353 !important;
+}
+
+.shold{
+    padding: 0;
+    text-align: center;
+}
+
+.sidebar-wrapper{
+    border-radius: 31px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sideebar{
+    background-color: #edc353;
+    padding: 0;
+}
+
+.sidebar>li{
+    padding: 5px;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar>li:hover{
+    background-color: #f9d472;
+}
+
+.sidebar>li:hover a{
+    color: #d6aa37;
+}
+
+.sidebar>li.active{
+    background-color: #f9d472;
+}
+
+.sidebar>li.active a{
+    color: #d6aa37;
+}
+
+.sidebar>li>a{
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: gray;
+}
