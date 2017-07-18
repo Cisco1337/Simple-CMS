@@ -67,12 +67,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $query = $db->query("SELECT * FROM users WHERE admin=1");
+                                    $query = $db->query("SELECT * FROM users WHERE admin=0");
                                     if ($query->rowCount() > 0){
                                         while($row = $query->fetch(PDO::FETCH_OBJ)){
                                             $date = date("d/m/Y H:i:s");
-                                            echo "<tr><td>{$row->id}</td><td>{$row->username}</td><td><small>{$date}</small></td><td><button class=\"btn btn-xs btn-danger\" onclick='ban({$row->id});'>Ban</button> <button class=\"btn btn-xs btn-danger\" onclick='delete({$row->id});'>Delete</button></td></tr>";
+                                            echo "<tr><td>{$row->id}</td><td>{$row->username}</td><td><small>{$date}</small></td><td><button class=\"btn btn-xs btn-danger\" onclick='ajax(\"ban\", \"{$row->id}\");'>Ban</button> <button class=\"btn btn-xs btn-danger\" onclick='ajax(\"delete\", \"{$row->id}\");'>Delete</button></td></tr>";
                                         }
+                                    } else {
+                                        echo "<tr><td colspan=\"4\">No users</td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -86,15 +88,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script>
-            function ban(id){
+            function ajax(action, id){
                 $.post("ajax/admin.php", {
-                    action: "ban",
+                    action: action,
                     uid: id
                 }).done(function(data){
-                    alert("User Banned" + data);
+                    if (data == "success"){
+                        if (action == "ban")
+                            alert("User banned successfuly!");
+                        else if (action == "delete"){
+                            alert("User removed successfuly!");
+                        }
+                    }
                 });
             }
-
         </script>
     </body>
 </html>
